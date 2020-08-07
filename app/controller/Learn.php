@@ -6,14 +6,12 @@
  * Description :
  */
 namespace app\controller;
-
 //use app\Request;
 use think\facade\Request;
 class Learn
 {
 
     public function calm() {
-        input();
         dump(Request::param('name'));
     }
 
