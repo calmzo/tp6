@@ -91,4 +91,13 @@ abstract class BaseController
         return $v->failException(true)->check($data);
     }
 
+    public function __call($name, $arguments)
+    {
+        // TODO: Implement __call() method.
+        return error("找不到该{$name}方法", null, config('status.action_not_found'));
+    }
+
+
+
+
 }

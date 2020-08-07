@@ -7,8 +7,9 @@
  */
 namespace app\controller;
 //use app\Request;
+use app\BaseController;
 use think\facade\Request;
-class Learn
+class Learn extends BaseController
 {
 
     public function calm() {
