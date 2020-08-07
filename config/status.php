@@ -8,7 +8,7 @@
 
 return [
     'success' => 1,
-    'error' => 0,
+    'error' => 500,
     'not_login' => -1,
     'user_is_reregister' => -2,
     'action_not_found' => 404,

@@ -27,7 +27,7 @@ if(!function_exists('error')) {
      * User: chenzhuo
      * Date: 2020/8/7 10:16 下午
      */
-    function error($msg = 'error', $data='', $code = 500)
+    function error($msg = 'error', $data=null, $code = 500)
     {
         return result($msg, $data, $code);
     }

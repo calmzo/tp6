@@ -8,6 +8,8 @@
 
 namespace app\controller;
 use app\BaseController;
+use think\facade\Db;
+
 class Demo extends BaseController
 {
     public function show() {
@@ -24,6 +26,20 @@ class Demo extends BaseController
 
     public function request() {
         dump($this->request->param('name',13,'intval'));
+    }
+
+    public function database()
+    {
+        $article = Db::table('pc_article')
+            ->where('id','>', 10)
+            ->order('id','desc')
+//            ->page(2,4)
+//            ->select();
+            ->select();
+        dump($article);
+//        return success($article);
+
+
     }
 
 
