@@ -1,52 +1,42 @@
 <?php
 // 应用公共文件
-
-if(!function_exists('success')) {
+if(!function_exists('success')){
     /**
      * 操作成功
-     * @param $data
      * @param string $msg
+     * @param string $data
      * @param int $code
-     * @return \think\response\Json
-     * User: chenzhuo
-     * Date: 2020/8/7 10:16 下午
+     * @return Json
      */
-    function success($data, $msg = 'success', $code = 200)
+    function success($data = '', $msg = 'success', $code = 200)
     {
         return result($msg, $data, $code);
     }
 }
 
-if(!function_exists('error')) {
+if(!function_exists('error')){
     /**
      * 操作失败
-     * @param $data
      * @param string $msg
+     * @param string $data
      * @param int $code
-     * @return \think\response\Json
-     * User: chenzhuo
-     * Date: 2020/8/7 10:16 下午
+     * @return Json
      */
-    function error($msg = 'error', $data=null, $code = 500)
+    function error($msg = 'fail', $data = '', $code = 500)
     {
         return result($msg, $data, $code);
     }
 }
 
-
-
-
-if(!function_exists('result')) {
+if(!function_exists('result')){
     /**
-     * 通用化API输出
+     * 返回json结果
      * @param string $msg
-     * @param array $data
+     * @param string $data
      * @param int $code
-     * @return \think\response\Json
-     * User: chenzhuo
-     * Date: 2020/8/7 10:13 下午
+     * @return Json
      */
-    function result($msg = 'fail', $data = [], $code = 500)
+    function result($msg = 'fail', $data = '', $code = 500)
     {
         $header = [];
         //处理跨域请求问题
@@ -57,11 +47,11 @@ if(!function_exists('result')) {
                 return json('',200,$header);
             }
         }
+
         return json([
             'code' => $code,
-            'msg' => $msg,
-            'data' => $data
+            'msg'  => $msg,
+            'data' => $data,
         ], $code, $header);
     }
 }
-
