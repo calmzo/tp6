@@ -18,4 +18,8 @@ class User extends BaseController
         return success($data);
     }
 
+    public function middleware(){
+        dump($this->request->type);
+    }
+
 }
