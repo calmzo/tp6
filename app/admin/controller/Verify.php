@@ -12,6 +12,6 @@ use think\captcha\facade\Captcha;
 class Verify {
 
     public function index() {
-        return Captcha::create("abc");
+        return Captcha::create("customize");
     }
 }

@@ -58,5 +58,28 @@ return [
         ],
 
         // 更多的数据库配置信息
+
+        'mongo' => [
+            // 数据库类型
+            'type'              => env('mongo.type', 'mongo'),
+
+            'query'			 => '\think\mongo\Query',
+
+            // 服务器地址
+            'hostname'          => '120.53.21.205',
+            // 数据库名
+            'database'          => env('mongo.database', 'test'),
+            // 用户名
+//            'username'          => env('database.username', 'root'),
+            // 密码
+//            'password'          => env('database.password', ''),
+            // 端口
+            'hostport'          => env('mongo.hostport', '27017'),
+            // 数据库连接参数
+            'pk_convert_id'  => true,
+
+
+            // 端口
+        ],
     ],
 ];

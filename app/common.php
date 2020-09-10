@@ -1,6 +1,7 @@
 <?php
 // 应用公共文件
-
+use think\facade\Cache;
+use app\common\lib\Funnel;
 if(!function_exists('success')) {
     /**
      * 操作成功
@@ -88,3 +89,51 @@ if(!function_exists('show')) {
         return json($result, $httpStatus);
     }
 }
+
+
+if(!function_exists('isActionAllowed')) {
+    function isActionAllowed($userId, $action, $period, $maxCount)
+    {
+        Cache::multi();
+        $key = sprintf('hist:%s:%s', $userId, $action);
+        $now = msectime();   # 毫秒时间戳
+        Cache::zadd($key, $now, $now); //value 和 score 都使用毫秒时间戳
+        Cache::zremrangebyscore($key, 0, $now - $period); //移除时间窗口之前的行为记录，剩下的都是时间窗口内的
+        Cache::zcard($key);  //获取窗口内的行为数量
+        Cache::expire($key, $period + 1);  //多加一秒过期时间
+        $replies = Cache::exec();
+        return $replies[2] <= $maxCount;
+    }
+}
+
+if(!function_exists('msectime')) {
+
+
+    function msectime() {
+        list($msec, $sec) = explode(' ', microtime());
+        $msectime = (float)sprintf('%.0f', (floatval($msec) + floatval($sec)) * 1000);
+        return $msectime;
+    }
+
+}
+
+
+if(!function_exists('isActionAllowed2')) {
+
+    function isActionAllowed2($userId, $action, $capacity, $leakingRate)
+    {
+        $key = sprintf("%s:%s", $userId, $action);
+        $funnel = $GLOBALS['funnel'][$key] ?? '';
+        if (!$funnel) {
+            $funnel  = new Funnel($capacity, $leakingRate);
+            $GLOBALS['funnel'][$key] = $funnel;
+        }
+        return $funnel->watering(1);
+    }
+
+
+}
+
+
+
+

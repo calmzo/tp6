@@ -23,6 +23,18 @@ class ClassArr {
             'image' => 'xxx',
         ];
     }
+
+
+    public static function importClassStat() {
+        return [
+            "user" => "app\common\lib\import\UserImport",
+        ];
+    }
+
+
+
+
+
     public static function initClass($type, $classs, $params = [], $needInstance = false) {
         // 如果我们工厂模式调用的方法是静态的，那么我们这个地方返回类库 AliSms
         // 如果不是静态的呢，我们就需要返回 对象

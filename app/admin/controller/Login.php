@@ -10,7 +10,6 @@ namespace app\admin\controller;
 
 use think\facade\View;
 use app\common\model\mysql\AdminUser;
-
 class Login extends AdminBase {
 
     public function initialize() {
@@ -43,6 +42,7 @@ class Login extends AdminBase {
             'password' => $password,
             'captcha' => $captcha,
         ];
+
         $validate = new \app\admin\validate\AdminUser();
         if(!$validate->check($data)) {
             return show(config("status.error"), $validate->getError());
@@ -56,7 +56,7 @@ class Login extends AdminBase {
             //return show(config("status.error"), "验证码不正确");
         //}
         try {
-            $result = (new \app\admin\business\AdminUser())->login($data);
+            $result = (new \app\admin\service\AdminUser())->login($data);
         }catch (\Exception $e) {
             return show(config("status.error"), $e->getMessage());
         }
