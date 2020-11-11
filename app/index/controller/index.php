@@ -212,13 +212,12 @@ class index extends BaseController
 //        $res = Db::connect("mongo")->table("test")->find(1);
 
 //        $res = Mongodb::getInstance()->update('test', ['id' => 2], ['name' => '小白']);
-                $res = Mongodb::getInstance()->paginate('test1','name',1,2);
+//                $res = Mongodb::getInstance()->paginate('test','name',1,2);
 
-//        $res = Mongodb::getInstance()->insert('test1',  ['title_id'=>4, 'name' => '小懒','age' => 12]);
+          $res = Mongodb::getInstance()->insert('regulations',  ['title_id'=>4, 'name' => '小懒','age' => 12]);
 //        $id = '5f599685a1269c8375516714';
 //        $id = (string)$id;
 //        $res = Mongodb::getInstance()->find('test',  $id);
-
 //        $userModel = new Test();
 //        $test = $userModel->getTestById(1);
 //        halt($test);
@@ -227,6 +226,19 @@ class index extends BaseController
 //        $goodModel = new Goods();
 //        $test = mysql\Goods::find(1);
 //        print_r($test);die;
+
+    }
+
+    public function demo(){
+
+        $arr = [1,7,9,10,8,12];
+        $demo = new \tools\Demo();
+        $aa = $demo::getSort($arr);
+
+        var_dump($aa);
+
+
+
 
     }
 

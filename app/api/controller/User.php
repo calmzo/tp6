@@ -18,6 +18,15 @@ class User extends BaseController
         return success($data);
     }
 
+    public function gift(){
+
+        $res = 
+
+        return success($res);
+
+    }
+
+
     public function middleware(){
         dump($this->request->type);
     }

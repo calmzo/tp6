@@ -9,9 +9,7 @@ use think\facade\Route;
 Route::group('api/:version', function () {
 
     Route::group('/user', function () {
-        Route::get('/index', 'api/:version.user/index'); // 课程首页
-
-
+        Route::get('/index', 'api/:version.user/index'); //
     });
 
 

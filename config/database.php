@@ -62,11 +62,8 @@ return [
         'mongo' => [
             // 数据库类型
             'type'              => env('mongo.type', 'mongo'),
-
-            'query'			 => '\think\mongo\Query',
-
             // 服务器地址
-            'hostname'          => '120.53.21.205',
+            'hostname'          => env('mongo.hostname', '222.175.139.222'),
             // 数据库名
             'database'          => env('mongo.database', 'test'),
             // 用户名
@@ -77,6 +74,7 @@ return [
             'hostport'          => env('mongo.hostport', '27017'),
             // 数据库连接参数
             'pk_convert_id'  => true,
+//            'query'			 => '\think\mongo\Query',
 
 
             // 端口
